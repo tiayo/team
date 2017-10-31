@@ -28,10 +28,13 @@ class ViewController
         $replace = null;
 
         foreach ($articles as $article) {
+
+            $picture = substr($article['picture'], 0, 4) == 'http' ? $article['picture'] : config('site').$article['picture'];
+
             $replace .= "<div class='col-md-4'>
 					<article class='article-post'>
 						<a target='_blank' href='".config('site').'article'.$article['links']."'>
-							<div class='article-image has-overlay' style='background-image: url(".config('site').$article['picture'].")'>
+							<div class='article-image has-overlay' style='background-image: url(".$picture.")'>
 								<span class='featured-tag'>最新资讯</span>
 							</div>
 							<figure>
