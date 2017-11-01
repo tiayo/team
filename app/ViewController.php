@@ -11,16 +11,43 @@ class ViewController
         $this->get = new GetController();
     }
 
+    /**
+     * 调度函数
+     *
+     * @return bool|mixed|string
+     */
     public function index()
     {
-        //获取html代码
         $index = file_get_contents(dirname(__DIR__).'/view/index.html');
 
         $index = $this->article($index);
 
-        return $index;
+        return $this->generate($index);
     }
 
+    /**
+     * 静态化
+     *
+     * @param $index
+     * @return bool
+     */
+    public function generate($index)
+    {
+        $file = fopen(dirname(__DIR__).'/public/index.html', 'w');
+
+        fwrite($file, $index);
+
+        fclose($file);
+
+        return true;
+    }
+
+    /**
+     * 替换文章位置
+     *
+     * @param $index
+     * @return mixed
+     */
     public function article($index)
     {
         $articles = json_decode($this->get->get(), true);
