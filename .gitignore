@@ -3,3 +3,4 @@
 *.token
 config.php
 vendor
+/public/index.html

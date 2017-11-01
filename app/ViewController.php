@@ -67,7 +67,7 @@ class ViewController
 							<figure>
 								<figcaption>
 									<h2>".$article['title']."</h2>
-									<p>".strip_tags($article['abstract'])."...</p>
+									<p>".mb_substr(strip_tags($article['abstract']), 0, 90)."...</p>
 								</figcaption>
 							</figure>
 						</a>
